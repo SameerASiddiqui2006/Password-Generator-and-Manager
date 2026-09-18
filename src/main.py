@@ -1,4 +1,5 @@
 import password_generator
+import vault
 
 def main():
     while True:
@@ -14,7 +15,13 @@ def main():
             if (choice == 1):
                 password_generator.passwordGenerator()
             elif (choice == 2):
-                addPassword()
+                print("What is the website where this password will be used? ")
+                website = input()
+                print("What is the Username / Email associated with this password? ")
+                email_username = input()
+                print("What is the password? ")
+                password = input()
+                addPassword(website, email_username, password)
             elif (choice == 3):
                 viewPassword()
             elif (choice == 4):
