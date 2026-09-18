@@ -1,4 +1,5 @@
 import secrets
+import vault
 
 def passwordGenerator():
     password = secrets.token_hex(10)
@@ -22,7 +23,7 @@ def passwordGenerator():
                     website = input()
                     print("What is the Username / Email associated with this password? ")
                     email_username = input()
-                    addPassword(website, email_username, password)
+                    vault.addPassword(website, email_username, password)
                     break
                 elif choice == 2:
                     print("Program will quit now")
