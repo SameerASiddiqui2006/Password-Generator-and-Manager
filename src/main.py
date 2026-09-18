@@ -7,7 +7,9 @@ def main():
         print("----- 1: Password Generator -----")
         print("----- 2: Add Password -----")
         print("----- 3: View Password -----")
-        print("----- 4: Quit Program -----")
+        print("----- 4: Delete Password -----")
+        print("----- 5: Update Password -----")
+        print("----- 6: Quit Program -----")
 
         try: 
             choice = int(input())
@@ -24,12 +26,19 @@ def main():
                 vault.addPassword(website, email_username, password)
             elif (choice == 3):
                 vault.viewPassword()
-            elif (choice == 4):
+            elif(choice == 4):
+                vault.viewPassword()
+                print("Enter the prefix number you want to delete: ")
+                deleteInput = int(input())
+                vault.deletePassword(deleteInput)
+            elif (choice == 5):
+                vault.updatePassword()
+            elif (choice == 6):
                 break
             else:
-                print("Invalid Input, Please Enter valid number between 1 - 4")
+                print("Invalid Input, Please Enter valid number between 1 - 6")
         except ValueError:
-            print("Invalid Input, Please Enter valid number between 1 - 4")
+            print("Invalid Input, Please Enter valid number between 1 - 6")
         
 
 
