@@ -21,9 +21,9 @@ def main():
                 email_username = input()
                 print("What is the password? ")
                 password = input()
-                addPassword(website, email_username, password)
+                vault.addPassword(website, email_username, password)
             elif (choice == 3):
-                viewPassword()
+                vault.viewPassword()
             elif (choice == 4):
                 break
             else:
