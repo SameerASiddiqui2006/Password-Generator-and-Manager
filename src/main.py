@@ -1,7 +1,10 @@
 import password_generator
 import vault
+import database
 
 def main():
+    database.init_db()
+    
     while True:
         print("----- Password Generator and Manager -----")
         print("----- 1: Password Generator -----")
