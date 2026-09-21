@@ -35,7 +35,7 @@ def main():
                 vault.viewPassword()
                 print("Enter the prefix number you want to delete: ")
                 deleteInput = int(input())
-                vault.deletePassword(deleteInput)
+                vault.deleteRecord(deleteInput)
             elif (choice == 6):
                 vault.viewPassword()
                 print("Enter the prefix number you want to update: ")

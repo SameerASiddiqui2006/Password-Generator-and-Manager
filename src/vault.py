@@ -24,13 +24,13 @@ def viewPassword():
     for i in range(len(password_lst)):
         print(f'{i}. website: {website_lst[i]}, username: {username_lst[i]}, password: {password_lst[i]}')
 
-def deletePassword(deleteInput):
+def deleteRecord(deleteInput):
     try:
-        website_lst.remove(website_lst[deleteInput])
-        username_lst.remove(username_lst[deleteInput])
-        password_lst.remove(password_lst[deleteInput])
+        del website_lst[deleteInput]
+        del username_lst[deleteInput]
+        del password_lst[deleteInput]
 
-        print("Password successfully deleted")
+        print("Record successfully deleted")
     except IndexError :
         print("Please enter a valid prefix")
 
