@@ -39,6 +39,18 @@ def insertDB(website, email_username, password):
     connection_obj.commit()
     connection_obj.close()
 
+def searchDB(searchInput):
+    connection_obj = sqlite3.connect('psdmanager.db')
+    cursor_obj = connection_obj.cursor()
+    
+    search_query = ("SELECT * FROM passwords WHERE website = ?")
+    search_value = (searchInput,)
+
+    cursor_obj.execute(search_query, search_value)
+    results = cursor_obj.fetchall()
+
+    return results
+
 def removeDB (deleteInput):
     connection_obj = sqlite3.connect('psdmanager.db')
     cursor_obj = connection_obj.cursor()

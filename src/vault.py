@@ -10,15 +10,13 @@ def addPassword(website, email_username, password):
     print("password successfully added")
 
 def search(searchInput):
-    if searchInput in website_lst:
-        indices = [index for index, value in enumerate(website_lst) if value == searchInput]
-        
-        for index in indices:
-            print(f'username: {username_lst[index]}, password: {password_lst[index]}')
+    results = database.searchDB(searchInput)
+
+    if len(results) == 0:
+        print("No result found")
     else:
-        print(f'{searchInput} was not found')
-
-
+        for row in results:
+            print(f'{row[0]}. website: {row[1]}, email: {row[2]}, password: {row[3]}')
 
 def viewPassword():
     records = database.get_password()
