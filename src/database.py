@@ -17,6 +17,16 @@ def init_db():
     connection_obj.commit()
     connection_obj.close()
 
+def get_password():
+    connection_obj = sqlite3.connect('psdmanager.db')
+    cursor_obj = connection_obj.cursor()
+
+    cursor_obj.execute("SELECT * FROM passwords")
+
+    records = cursor_obj.fetchall()
+    return records
+
+
 def insertDB(website, email_username, password):
     connection_obj = sqlite3.connect('psdmanager.db')
     cursor_obj = connection_obj.cursor()
@@ -26,5 +36,16 @@ def insertDB(website, email_username, password):
 
     cursor_obj.execute(insert_query, insert_values)
 
+    connection_obj.commit()
+    connection_obj.close()
+
+def removeDB (deleteInput):
+    connection_obj = sqlite3.connect('psdmanager.db')
+    cursor_obj = connection_obj.cursor()
+    
+    delete_values = (deleteInput,)
+    delete_query = "DELETE FROM passwords WHERE password_id = ?"
+    cursor_obj.execute(delete_query, delete_values)
+    
     connection_obj.commit()
     connection_obj.close()
