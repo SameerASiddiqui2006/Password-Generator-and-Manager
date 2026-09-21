@@ -24,6 +24,7 @@ def get_password():
     cursor_obj.execute("SELECT * FROM passwords")
 
     records = cursor_obj.fetchall()
+    connection_obj.close()
     return records
 
 
@@ -43,11 +44,12 @@ def searchDB(searchInput):
     connection_obj = sqlite3.connect('psdmanager.db')
     cursor_obj = connection_obj.cursor()
     
-    search_query = ("SELECT * FROM passwords WHERE website = ?")
+    search_query = ("SELECT * FROM passwords WHERE website LIKE ?")
     search_value = (searchInput,)
 
     cursor_obj.execute(search_query, search_value)
     results = cursor_obj.fetchall()
+    connection_obj.close()
 
     return results
 
@@ -61,3 +63,32 @@ def removeDB (deleteInput):
     
     connection_obj.commit()
     connection_obj.close()
+
+def updateRecordDB (updateInput, updateChoice, newValueInput):
+    connection_obj = sqlite3.connect('psdmanager.db')
+    cursor_obj = connection_obj.cursor()
+
+    if updateChoice.lower() == "website":
+        column_name = "website"
+    elif updateChoice.lower() == "username" or updateChoice.lower() == "email" or updateChoice.lower() == "username/email":
+        column_name = "email"
+    elif updateChoice.lower() == "password":
+        column_name = "password"
+    else: 
+        connection_obj.close()
+        print("Please type valid column name")
+        return
+
+    update_query = f"UPDATE passwords SET {column_name} = ? WHERE password_id = ?"
+    update_values = (newValueInput, updateInput)
+
+    cursor_obj.execute(update_query, update_values)
+
+    if cursor_obj.rowcount == 0:
+        connection_obj.close()
+        print("Prefix is incorrect, enter correct prefix please")
+        return
+
+    connection_obj.commit()
+    connection_obj.close()
+    return print("Value successfully updated")
