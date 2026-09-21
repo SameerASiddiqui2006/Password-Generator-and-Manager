@@ -49,7 +49,15 @@ def main():
 
                 vault.updatePassword(updateInput, updateChoice, newValueInput)
             elif (choice == 7):
-                break
+                print("Are you sure you want to quit (Y/N)")
+                quitInput = input()
+
+                if quitInput.lower() == "y":
+                    break
+                elif quitInput.lower() == "n":
+                    continue
+                else:
+                    print("Please type valid input")
             else:
                 print("Invalid Input, Please Enter valid number between 1 - 7")
         except ValueError:
