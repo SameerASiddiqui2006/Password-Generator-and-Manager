@@ -1,3 +1,5 @@
+import database
+
 website_lst = []
 username_lst = []
 password_lst = []
@@ -6,6 +8,8 @@ def addPassword(website, email_username, password):
     website_lst.append(website)
     username_lst.append(email_username)
     password_lst.append(password)
+
+    database.insertDB(website, email_username, password)
 
     print("password successfully added")
 
