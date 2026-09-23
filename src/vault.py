@@ -28,7 +28,6 @@ def deleteRecord(deleteInput):
         print("Please enter a valid prefix")
 
 def updatePassword(updateInput, updateChoice, newValueInput):
-
     database.updateRecordDB(updateInput, updateChoice, newValueInput)
 
     
